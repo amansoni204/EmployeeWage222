@@ -11,6 +11,7 @@ namespace EmployeeWage
     internal class CompanyEmployeeWage
     {
 
+
         public string company;
         public int empRatePerHour;
         public int numOfWorkingDays;
@@ -38,8 +39,7 @@ namespace EmployeeWage
 
 
 
-
         }
         }
     }
-
+ 
