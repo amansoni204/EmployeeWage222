@@ -4,47 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestingPractices
+namespace EmployeeWage
+
 
 {
-    public class EmpWageBuilderProject
+    internal class CompanyEmployeeWage
     {
-        public const int IS_FULL_TIME = 1;
-        public const int IS_PART_TIME = 2;
-        public static int ComputeEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
+
+        public string company;
+        public int empRatePerHour;
+        public int numOfWorkingDays;
+        public int maxHoursPerMonth;
+        public int totalEmpWage;
+        public CompanyEmployeeWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)//initializing all variabeles
         {
-            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;      //variables
-            while (totalEmpHrs <= maxHoursPerMonth && totalWorkingDays < numOfWorkingDays)       //computation
-            {
-                totalWorkingDays++;
-                Random random = new Random();
-                int empCheck = random.Next(3);
-                switch (empCheck)
-                {
-                    case IS_PART_TIME:
-                        empHrs = 4;
-                        break;
-                    case IS_FULL_TIME:
-                        empHrs = 8;
-                        break;
-                    default:
-                        empHrs = 0;
-                        break;
-                }
-                totalEmpHrs += empHrs;//as the no of working days will be passing the total no of working hours
-                if (totalEmpHrs > maxHoursPerMonth)  //totalEmpHrs should not go beyond defined MaxHrs .
-                {
-                    totalEmpHrs = maxHoursPerMonth;
-                }
-            }
-            int totalEmpWage = totalEmpHrs * empRatePerHour;//per hour rate * total working hour to find wage .
-            Console.WriteLine($"Total Emp Wage for the Company \"{company}\" is : {totalEmpWage}");
-            return totalEmpWage;
+            this.company = company;
+            this.empRatePerHour = empRatePerHour;
+            this.numOfWorkingDays = numOfWorkingDays;
+            this.maxHoursPerMonth = maxHoursPerMonth;
         }
-        static void Main(string[] args)
+        public void setTotalEmpWage(int totalEmpWage)//setter method used to set the value of empWage of this class ("this" keyword has been used as an reference for current class instance variable)
         {
-            ComputeEmpWage("Dmart", 20, 3, 10);
-            ComputeEmpWage("Reliance", 25, 4, 20);
+            this.totalEmpWage = totalEmpWage;
+        }
+        public override string ToString()//representing objects into string so it can be readable .
+        {
+            return "Total Emp Wage for company : " + this.company + " is : " + this.totalEmpWage;
 
 
 
